@@ -6,10 +6,7 @@ export class PessoaFisica extends Usuario {
         this.dataDeNascimento = dataDeNascimento;
     }
     exibirDados() {
-        console.log("-----Dados Pessoa Física-----");
-        super.exibirDados();
-        console.log(`CPF: ${this.cpf}`);
-        console.log(`Data de nascimento: ${this.dataDeNascimento}`);
+        console.log("\n-----Dados Pessoa Física-----\n", `Nome: ${this.getNome()}\n`, `CPF: ${this.cpf}\n`, `Data de nascimento: ${this.dataDeNascimento}\n`, `Endereço: ${this.getEndereco()}\n`);
         this.exibirContas();
     }
     getCpf() {
@@ -22,6 +19,6 @@ export class PessoaFisica extends Usuario {
         return this.dataDeNascimento;
     }
     setDataDeNascimento(novaDataDeNascimento) {
-        this.cpf = novaDataDeNascimento;
+        this.dataDeNascimento = novaDataDeNascimento;
     }
 }

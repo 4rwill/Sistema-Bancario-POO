@@ -5,9 +5,10 @@ export class ContaPoupanca extends Conta {
         this.taxaJuros = taxaJuros;
     }
     aplicarJuros() {
-        const juros = this.saldo * this.taxaJuros;
-        this.saldo += juros;
-        console.log(`Juros de ${juros.toFixed(2)} aplicados. Novo saldo: ${this.saldo.toFixed(2)}`);
+        const juros = this.getSaldo() * this.taxaJuros;
+        const novoSaldo = this.getSaldo() + juros;
+        this.setSaldo(novoSaldo);
+        console.log(`Juros de ${juros.toFixed(2)} aplicados. Novo saldo: ${this.getSaldo().toFixed(2)}`);
     }
     getTaxaJuros() {
         return this.taxaJuros;

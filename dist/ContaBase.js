@@ -25,18 +25,22 @@ export class ContaBase {
             console.log("Valor de saque INVÁLIDO!");
         }
     }
-    consultarSaldo() {
-        console.log(`Saldo atual de ${this.titular}: R$${this.saldo.toFixed(2)}`);
-        return this.saldo;
-    }
-    ;
     getNumero() {
         return this.numero;
+    }
+    setNumero(novoNumero) {
+        this.numero = novoNumero;
     }
     getTitular() {
         return this.titular;
     }
+    setTitular(novoTitular) {
+        this.titular = novoTitular;
+    }
     getSaldo() {
         return this.saldo;
+    }
+    setSaldo(novoSaldo) {
+        this.saldo = novoSaldo;
     }
 }

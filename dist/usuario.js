@@ -19,10 +19,6 @@ export class Usuario {
             conta.consultarSaldo();
         });
     }
-    exibirDados() {
-        console.log(`Nome: ${this.nome}`);
-        console.log(`Endereço: ${this.endereco}`);
-    }
     getNome() {
         return this.nome;
     }

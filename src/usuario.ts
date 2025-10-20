@@ -30,10 +30,8 @@ export abstract class Usuario{
 
 
 
-    public exibirDados():void{
-        console.log(`Nome: ${this.nome}`);
-        console.log(`Endereço: ${this.endereco}`);
-    }
+
+    public abstract exibirDados():void
 
 
 

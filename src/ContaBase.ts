@@ -1,9 +1,9 @@
 import type { IOperacoesBancarias } from "./IOperacoesBancarias.js";
 
 export abstract class ContaBase implements IOperacoesBancarias {
-    protected numero:number;
-    protected titular: string;
-    protected saldo: number;
+    private numero:number;
+    private titular: string;
+    private saldo: number;
 
     constructor(numero:number,titular:string,saldo:number = 0) {
         this.numero = numero;
@@ -39,23 +39,30 @@ export abstract class ContaBase implements IOperacoesBancarias {
         
     }
 
-    public consultarSaldo(): number{
-        console.log(`Saldo atual de ${this.titular}: R$${this.saldo.toFixed(2)}`)
-
-        return this.saldo
-    };
+    public abstract consultarSaldo(): number;
 
     public getNumero():number{
         return this.numero;
     }
 
+    public setNumero(novoNumero: number):void{
+        this.numero = novoNumero;
+    }
 
      public getTitular():string{
         return this.titular;
     }
 
+      public setTitular(novoTitular: string):void{
+        this.titular = novoTitular;
+    }
+
      public getSaldo():number{
         return this.saldo;
+    }
+
+    public setSaldo(novoSaldo: number):void{
+        this.saldo = novoSaldo;
     }
 
    
