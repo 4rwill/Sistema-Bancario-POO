@@ -2,17 +2,11 @@ import { Banco } from "./Banco.js";
 import { PessoaFisica } from "./pessoaFisica.js";
 import { PessoaJuridica } from "./pessoaJuridica.js";
 import promptSync from "prompt-sync";
-// Inicializa a função para capturar a entrada do usuário
 const prompt = promptSync();
-// Instância principal do nosso banco
-const meuBanco = new Banco();
-// ---- Pré-cadastro de dados para facilitar os testes ----
-const clientePF = new PessoaFisica("João Silva", "Rua A, 123", "111", "10/10/1990");
-const clientePJ = new PessoaJuridica("Tech Corp", "Rua B, 456", "Tech Soluções", "222");
-meuBanco.adicionarCliente(clientePF);
-meuBanco.adicionarCliente(clientePJ);
-meuBanco.criarConta("111", 1001);
-meuBanco.criarConta("222", 5001);
+// 1. Instancia o banco. O construtor JÁ VAI CHAMAR carregarDados()
+const meuBanco = new Banco('db.json');
+// 2. ---- Bloco de pré-cadastro REMOVIDO ----
+// Os dados agora vêm do db.json
 // ---- Fim do pré-cadastro ----
 let rodando = true;
 while (rodando) {
@@ -38,7 +32,7 @@ while (rodando) {
                 const cpf = prompt('CPF: ');
                 const dataNasc = prompt('Data de Nascimento: ');
                 const novoCliente = new PessoaFisica(nome, endereco, cpf, dataNasc);
-                meuBanco.adicionarCliente(novoCliente);
+                meuBanco.adicionarCliente(novoCliente); // Já salva os dados
             }
             else if (tipoCliente === 'PJ') {
                 const nomeFantasia = prompt('Nome Fantasia: ');
@@ -46,7 +40,7 @@ while (rodando) {
                 const endereco = prompt('Endereço: ');
                 const cnpj = prompt('CNPJ: ');
                 const novoCliente = new PessoaJuridica(nomeFantasia, endereco, razaoSocial, cnpj);
-                meuBanco.adicionarCliente(novoCliente);
+                meuBanco.adicionarCliente(novoCliente); // Já salva os dados
             }
             else {
                 console.log("Opção inválida.");
@@ -57,19 +51,19 @@ while (rodando) {
             const idCliente = prompt('Digite o CPF ou CNPJ do cliente: ');
             const numContaStr = prompt('Digite o número da nova conta: ');
             const numConta = parseInt(numContaStr);
-            meuBanco.criarConta(idCliente, numConta);
+            meuBanco.criarConta(idCliente, numConta); // Já salva os dados
             break;
         case '3':
             console.log("\n--- Realizar Depósito ---");
             const idDeposito = prompt('Digite o CPF/CNPJ do titular: ');
             const clienteDep = meuBanco.encontrarCliente(idDeposito);
             if (clienteDep) {
-                // Para simplificar, vamos operar na primeira conta do cliente
+                // (Sua lógica de pegar a primeira conta. Pode ser melhorada no futuro)
                 const contaDep = clienteDep.getContas()[0];
-                // Adicionamos esta verificação para garantir que a conta existe
                 if (contaDep) {
                     const valorStr = prompt(`Valor do depósito para a conta ${contaDep.getNumero()}: R$`);
                     contaDep.depositar(parseFloat(valorStr));
+                    // Saldo foi alterado, mas salvará no 'case 6'
                 }
                 else {
                     console.log("❌ Este cliente não possui contas cadastradas.");
@@ -84,12 +78,11 @@ while (rodando) {
             const idSaque = prompt('Digite o CPF/CNPJ do titular: ');
             const clienteSaque = meuBanco.encontrarCliente(idSaque);
             if (clienteSaque) {
-                // Para simplificar, vamos operar na primeira conta do cliente
                 const contaSaque = clienteSaque.getContas()[0];
-                // Adicionamos esta verificação para garantir que a conta existe
                 if (contaSaque) {
                     const valorStr = prompt(`Valor do saque para a conta ${contaSaque.getNumero()}: R$`);
                     contaSaque.sacar(parseFloat(valorStr));
+                    // Saldo foi alterado, mas salvará no 'case 6'
                 }
                 else {
                     console.log("❌ Este cliente não possui contas cadastradas.");
@@ -104,6 +97,8 @@ while (rodando) {
             meuBanco.exibirClientes();
             break;
         case '6':
+            // 3. Salva todos os dados antes de sair
+            meuBanco.salvarDados();
             rodando = false;
             console.log("\nObrigado por usar nosso sistema. Até logo! 👋");
             break;

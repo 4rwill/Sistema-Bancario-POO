@@ -9,7 +9,7 @@ export class Usuario {
         console.log(`Conta Nº ${conta.getNumero()} adicionada ao usuário ${this.nome}`);
     }
     exibirContas() {
-        console.log("----- Contas -----");
+        console.log(`----- Contas (${this.getNome()})  -----`);
         if (this.contas.length === 0) {
             console.log("Nenhuma conta encontrada.");
             return;

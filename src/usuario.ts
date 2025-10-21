@@ -17,7 +17,7 @@ export abstract class Usuario{
     }
 
     protected exibirContas(): void {
-        console.log("----- Contas -----");
+        console.log(`----- Contas (${this.getNome()})  -----`);
         if (this.contas.length === 0) {
             console.log("Nenhuma conta encontrada.");
             return;

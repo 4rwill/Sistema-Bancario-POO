@@ -1,0 +1,47 @@
+[
+  {
+    "tipo": "PF",
+    "nome": "João Silva",
+    "endereco": "Rua A, 123",
+    "cpf": "111",
+    "dataDeNascimento": "10/10/1990",
+    "contas": [
+      {
+        "tipoConta": "Corrente",
+        "numero": 1001,
+        "titular": "João Silva",
+        "saldo": 0
+      }
+    ]
+  },
+  {
+    "tipo": "PJ",
+    "nomeFantasia": "Tech Corp",
+    "razaoSocial": "Tech Soluções",
+    "endereco": "Rua B, 456",
+    "cnpj": "222",
+    "contas": [
+      {
+        "tipoConta": "Corrente",
+        "numero": 5001,
+        "titular": "Tech Corp",
+        "saldo": 0
+      }
+    ]
+  },
+  {
+    "tipo": "PF",
+    "nome": "Will",
+    "endereco": "sao carlos",
+    "cpf": "1314",
+    "dataDeNascimento": "14/04/2005",
+    "contas": [
+      {
+        "tipoConta": "Corrente",
+        "numero": 1,
+        "titular": "Will",
+        "saldo": 2000
+      }
+    ]
+  }
+]
